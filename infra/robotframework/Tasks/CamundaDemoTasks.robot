@@ -7,7 +7,7 @@ Search with Bing
     [Tags]    search_bing
     [Setup]  Init Browser
     New page  http://www.google.com
-    Type text  name=q  ${VARS['search_term']}  delay=50 ms
+    Go to  https://www.google.com/search?q=${VARS['search_term']}
     Click  xpath=//*[contains(@class, 'tF2Cxc')]
     Wait for elements state  id=results
     ${link_text}  Get text  xpath=//a/h3
