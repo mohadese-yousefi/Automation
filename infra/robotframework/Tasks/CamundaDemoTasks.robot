@@ -9,10 +9,10 @@ Search with Bing
     New page  http://www.google.com
     Go to  https://www.google.com/search?q=${VARS['search_term']}
     ${link_text}  Get text  
-    ${count}=  Get Element Count  xpath=//*[contains(@class, 'tF2Cxc')]//a/h3
+    ${count}=  Get Element Count  xpath=//*[contains(@class, 'tF2Cxc')]
     ${results}=  Create list
     FOR  ${index}  IN RANGE  ${count}
-        ${link_text}  Get text xpath:(//*[contains(@class, 'tF2Cxc')]//a/h3)[${{${index} + 1}}]
+        ${link_text}  Get text xpath:(//*[contains(@class, 'tF2Cxc')])[${{${index} + 1}}]//a/h3
         ${href}=  Get Element Attribute
         ...  xpath:(//*[contains(@class, 'tF2Cxc')]//a/h3)[${{${index} + 1}}]
         ...  href
