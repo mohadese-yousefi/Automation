@@ -7,7 +7,7 @@ Search with Bing
     [Tags]    search_bing
     [Setup]  Init Browser
     New page  http://www.google.com
-    Type text  id=input  ${VARS['search_term']}  delay=50 ms
+    Type text  name=q  ${VARS['search_term']}  delay=50 ms
     Click  xpath=//*[contains(@class, 'tF2Cxc')]
     Wait for elements state  id=results
     ${link_text}  Get text  xpath=//a/h3
@@ -17,7 +17,7 @@ Search with DuckDuckGo
     [Tags]    search_duck
     [Setup]  Init Browser
     New page  http://www.google.com
-    Type text  id=input  ${VARS['search_term']}  delay=50 ms
+    Type text  name=q  ${VARS['search_term']}  delay=50 ms
     Click  xpath=//*[contains(@class, 'tF2Cxc')]
     Wait for elements state  id=results
     ${link_text}  Get text  xpath=//a/h3
