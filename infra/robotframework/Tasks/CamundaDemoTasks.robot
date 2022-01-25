@@ -8,9 +8,17 @@ Search with Bing
     [Setup]  Init Browser
     New page  http://www.google.com
     Go to  https://www.google.com/search?q=${VARS['search_term']}
-    Click  xpath=//*[contains(@class, 'tF2Cxc')]
-    Wait for elements state  id=results
-    ${link_text}  Get text  xpath=//a/h3
+    ${link_text}  Get text  
+    ${count}=  Get Element Count  xpath=//*[contains(@class, 'tF2Cxc')]//a/h3
+    ${results}=  Create list
+    FOR  ${index}  IN RANGE  ${count}
+        ${link_text}  Get text xpath:(//*[contains(@class, 'tF2Cxc')]//a/h3)[${{${index} + 1}}]
+        ${href}=  Get Element Attribute
+        ...  xpath:(//*[contains(@class, 'tF2Cxc')]//a/h3)[${{${index} + 1}}]
+        ...  href
+        Append to list  ${results}  ${href}
+    END
+
     Set process variable  result_bing  ${link_text}
 
 Search with DuckDuckGo
