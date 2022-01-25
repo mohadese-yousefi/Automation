@@ -24,11 +24,17 @@ Search with Bing
 Search with DuckDuckGo
     [Tags]    search_duck
     [Setup]  Init Browser
-    New page  http://www.google.com
-    Type text  name=q  ${VARS['search_term']}  delay=50 ms
-    Click  xpath=//*[contains(@class, 'tF2Cxc')]
-    Wait for elements state  id=results
-    ${link_text}  Get text  xpath=//a/h3
+    Go to  https://www.google.com/search?q=${VARS['search_term']}
+    ${link_text}  Get text  
+    ${count}=  Get Element Count  xpath=//*[contains(@class, 'tF2Cxc')]
+    ${results}=  Create list
+    FOR  ${index}  IN RANGE  ${count}
+        ${link_text}  Get text xpath:(//*[contains(@class, 'tF2Cxc')])[${{${index} + 1}}]//a/h3
+        ${href}=  Get Element Attribute
+        ...  xpath:(//*[contains(@class, 'tF2Cxc')]//a/h3)[${{${index} + 1}}]
+        ...  href
+        Append to list  ${results}  ${href}
+    END
     Set process variable  result_bing  ${link_text}
 
 
