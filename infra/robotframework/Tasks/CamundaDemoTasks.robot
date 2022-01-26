@@ -6,18 +6,11 @@ Suite Setup  Fetch Task  ${TOPIC}
 Search with Bing
     [Tags]    search_bing
     [Setup]  Init Browser
-    Go to  https://www.google.com/search?q=${VARS['search_term']}
-    ${link_text}  Get text  
-    ${count}=  Get Element Count  xpath=//*[contains(@class, 'tF2Cxc')]
-    ${results}=  Create list
-    FOR  ${index}  IN RANGE  ${count}
-        ${link_text}  Get text xpath:(//*[contains(@class, 'tF2Cxc')])[${{${index} + 1}}]//a/h3
-        ${href}=  Get Element Attribute
-        ...  xpath:(//*[contains(@class, 'tF2Cxc')]//a/h3)[${{${index} + 1}}]
-        ...  href
-        Append to list  ${results}  ${href}
-    END
-
+    New page  http://www.bing.fi
+    Type text  id=sb_form_q  ${VARS['search_term']}  delay=50 ms
+    Click  xpath=//*[contains(@class, 'search')]
+    Wait for elements state  id=b_results
+    ${link_text}  Get text  xpath=(//h2/a)[1]
     Set process variable  result_bing  ${link_text}
 
 Search with DuckDuckGo
