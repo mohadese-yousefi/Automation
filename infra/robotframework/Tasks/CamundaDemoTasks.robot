@@ -24,14 +24,13 @@ Search with Bing
 Search with DuckDuckGo
     [Tags]    search_duck
     [Setup]  Init Browser
-    Go to  https://www.google.com/search?q=${VARS['search_term']}
-    ${link_text}  Get text  
+    Go to  https://www.google.com/search?q=${VARS['search_term']} 
     ${count}=  Get Element Count  xpath=//*[contains(@class, 'tF2Cxc')]
     ${results}=  Create list
     FOR  ${index}  IN RANGE  ${count}
         ${link_text}  Get text xpath:(//*[contains(@class, 'tF2Cxc')])[${{${index} + 1}}]//a/h3
         ${href}=  Get Element Attribute
-        ...  xpath:(//*[contains(@class, 'tF2Cxc')]//a/h3)[${{${index} + 1}}]
+        ...  xpath:(//*[contains(@class, 'tF2Cxc')])[${{${index} + 1}}]//a/h3
         ...  href
         Append to list  ${results}  ${href}
     END
