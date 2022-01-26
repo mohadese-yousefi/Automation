@@ -28,7 +28,7 @@ Search with DuckDuckGo
     Type text  id=search_form_input_homepage  ${VARS['search_term']}  delay=50 ms
     Click  id=search_button_homepage
     Wait for elements state  id=links
-    ${link_text}  Get text  xpath=//h2/a
+    ${link_text}  Get text  xpath=(//h2/a)[1]
     Set process variable  result_duck  ${link_text}
 
 
