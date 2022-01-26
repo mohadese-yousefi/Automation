@@ -5,7 +5,7 @@ Suite Setup  Fetch Task  ${TOPIC}
 *** Tasks ***
 Search with Bing
     [Tags]    search_bing
-    Open browser  about:blank  browser=headlessfirefox
+    [Setup]  Init Browser
     Go to  https://www.google.com/search?q=${VARS['search_term']}
     Capture page screenshot
     ${link_text}  Get text  
