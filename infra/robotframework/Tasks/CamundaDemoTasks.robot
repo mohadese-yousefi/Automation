@@ -5,9 +5,9 @@ Suite Setup  Fetch Task  ${TOPIC}
 *** Tasks ***
 Search with Bing
     [Tags]    search_bing
-    [Setup]  Init Browser
-    New page  http://www.google.com
+    Open browser  about:blank  browser=headlessfirefox
     Go to  https://www.google.com/search?q=${VARS['search_term']}
+    Capture page screenshot
     ${link_text}  Get text  
     ${count}=  Get Element Count  xpath=//*[contains(@class, 'tF2Cxc')]
     ${results}=  Create list
