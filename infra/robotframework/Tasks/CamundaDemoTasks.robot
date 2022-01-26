@@ -20,7 +20,7 @@ Search with DuckDuckGo
     Wait for elements state  id=search_form_input_homepage
     Type text  id=search_form_input_homepage  ${VARS['search_term']}  delay=50 ms
     Click  id=search_button_homepage
-    Wait for elements state  id=links
+    Wait for elements state  id=links_wrapper
     ${link_text}  Get text  xpath=(//h2/a)[1]
     Set process variable  result_duck  ${link_text}
 
